@@ -34,24 +34,24 @@ const products = [
     description:
       "Comes With A Reliable Pulsator System, Durable Liners, And 240 Cc Claw For Smooth Milking. Ideal For Small To Medium Dairy Farms, Ensuring Comfort For Animals And Better Milk Flow",
     price: "₹7000",
-    priceExtra: "+gst",
+    priceExtra: "+ GST",
   },
 ];
 
 export const ServiceCategorySection = (): JSX.Element => {
   return (
-    <section className="w-full py-12 bg-[#c4e2ff] relative">
-      <div className="container mx-auto px-4">
+    <section className="w-full py-12 bg-[#c4e2ff] relative ">
+      <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-12">
           <h2 className="[font-family:'Inter',Helvetica] font-bold text-black text-3xl tracking-[0] leading-[normal]">
             Product
           </h2>
-          <button className="p-2 hover:bg-black/5 rounded-full transition-colors">
-            <ChevronRightIcon className="w-6 h-6 text-black" />
+          <button className="p-4 bg-[#032a4a] hover:bg-[#032a4a]/80 rounded-full transition-all duration-300 flex items-center justify-center">
+            <ChevronRightIcon className="w-8 h-8 text-white" />
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1110px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1150px] mx-auto">
           {products.map((product, index) => (
             <Card
               key={index}

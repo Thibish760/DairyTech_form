@@ -110,7 +110,7 @@ export const FooterSection = (): JSX.Element => {
 
         <div className="text-center">
           <p className="[font-family:'Mochiy_Pop_P_One',Helvetica] font-normal text-white text-[13.2px] tracking-[0] leading-[normal]">
-            @easemilker Copy Rights
+            @Easemilker Copy Rights
           </p>
         </div>
       </div>
