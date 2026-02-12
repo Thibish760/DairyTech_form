@@ -45,21 +45,21 @@ const badges = [
 
 export const WhyChooseFarm = (): JSX.Element => {
   return (
-    <div className="w-full bg-white py-16 px-8">
+    <div className="w-full bg-white py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8">
       <div className="max-w-[1140px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 sm:gap-12 md:gap-16">
 
           {/* LEFT COLUMN */}
           <div className="flex flex-col">
 
             {/* Heading + Text */}
-            <div className="mb-12">
-              <h1 className="font-['Inter'] font-bold text-black text-[34px] leading-[1.2] mb-5 max-w-[520px]">
+            <div className="mb-8 sm:mb-10 md:mb-12">
+              <h1 className="font-['Inter'] font-bold text-black text-[20px] sm:text-[28px] md:text-[34px] leading-[1.2] mb-3 sm:mb-4 md:mb-5 max-w-[520px]">
                 Why is our dairy & cow farm maintenance company the right choice
                 for your farm?
               </h1>
 
-              <p className="font-['Inter'] font-medium text-[#605a5a] text-[17px] leading-[1.6] max-w-[520px]">
+              <p className="font-['Inter'] font-medium text-[#605a5a] text-[13px] sm:text-[15px] md:text-[17px] leading-[1.6] max-w-[520px]">
                 Built on hands-on dairy farm experience, we understand cow
                 health, hygiene, and equipment care. Our solutions are
                 practical, field-tested, and focused on long-term farm success.
@@ -67,12 +67,12 @@ export const WhyChooseFarm = (): JSX.Element => {
             </div>
 
             {/* Social Icons */}
-            <div className="flex gap-4 mb-12">
+            <div className="flex gap-3 sm:gap-4 mb-8 sm:mb-10 md:mb-12">
               {socialIcons.map((icon, index) => (
                 <a
                   key={index}
                   href="#"
-                  className="w-6 h-6 hover:scale-110 transition"
+                  className="w-9  hover:scale-110 transition"
                 >
                   <img
                     className="w-full h-full object-contain"
@@ -84,10 +84,10 @@ export const WhyChooseFarm = (): JSX.Element => {
             </div>
 
             {/* Badges */}
-            <div className="flex justify-start gap-8">
+            <div className="flex justify-start gap-3 sm:gap-4 md:gap-9 py-2 sm:py-3 md:py-4 flex-wrap mb-8 sm:mb-12 md:mb-16">
               {badges.map((badge, index) => (
-                <div key={index} className="flex flex-col items-center gap-2">
-                  <div className="w-8 h-8">
+                <div className="flex flex-col items-center gap-1 sm:gap-2">
+                  <div className="w-8 sm:w-9 md:w-10 hover:scale-110 transition">
                     <img
                       className="w-full h-full object-contain"
                       alt={badge.alt}
@@ -95,7 +95,7 @@ export const WhyChooseFarm = (): JSX.Element => {
                     />
                   </div>
 
-                  <p className="font-['Inter'] font-medium text-[#4e4d4d] text-[13px] text-center max-w-[110px]">
+                  <p className="font-['Inter'] font-medium text-[#4e4d4d] text-[10px] sm:text-[11px] md:text-[13px] text-center max-w-[80px] sm:max-w-[100px] md:max-w-[110px]">
                     {badge.title}
                   </p>
                 </div>
@@ -104,16 +104,16 @@ export const WhyChooseFarm = (): JSX.Element => {
           </div>
 
           {/* RIGHT COLUMN - CARDS */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4 w-[400px] h-full sm:gap-5 md:gap-6">
             {featureCards.map((card, index) => (
               <div
                 key={index}
-                className="bg-[#c4d1d4] rounded-xl flex gap-5 p-[22px]"
+                className="bg-[#c4d1d4] rounded-lg sm:rounded-xl flex gap-3 sm:gap-4 md:gap-5 p-3 sm:p-4 md:p-[22px]"
               >
                 {/* Icon Box */}
-                <div className="bg-white rounded-[10px] w-[64px] h-[64px] flex items-center justify-center flex-shrink-0">
+                <div className="bg-white rounded-[8px] sm:rounded-[10px] w-[48px] sm:w-[56px] md:w-[64px] h-[48px] sm:h-[56px] md:h-[64px] flex items-center justify-center flex-shrink-0">
                   <img
-                    className="w-[38px] h-[38px] object-contain"
+                    className="w-[28px] sm:w-[32px] md:w-[38px] h-[28px] sm:h-[32px] md:h-[38px] object-contain"
                     alt={card.title}
                     src={card.icon}
                   />
@@ -121,11 +121,11 @@ export const WhyChooseFarm = (): JSX.Element => {
 
                 {/* Text */}
                 <div className="flex flex-col gap-1">
-                  <h3 className="font-['Inter'] font-semibold text-black text-[17px]">
+                  <h3 className="font-['Inter'] font-semibold text-black text-[13px] sm:text-[15px] md:text-[17px]">
                     {card.title}
                   </h3>
 
-                  <p className="font-['Inter'] text-black text-[14px] leading-[1.45] max-w-[340px]">
+                  <p className="font-['Inter'] text-black text-[12px] sm:text-[13px] md:text-[14px] leading-[1.45] max-w-[340px]">
                     {card.description}
                   </p>
                 </div>

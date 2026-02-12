@@ -24,15 +24,15 @@ export const HeroSection = (): JSX.Element => {
   };
 
   return (
-    <section className="w-full bg-white py-4 md:py-6 lg:py-8 px-3 md:px-4">
+    <section className="w-full bg-white py-2 sm:py-3 md:py-6 lg:py-8 px-2 sm:px-3 md:px-4">
       <div className="max-w-[1440px] mx-auto">
-        <NavigationMenu className="mx-auto mb-4 md:mb-6 lg:mb-8">
-          <NavigationMenuList className="flex gap-2 sm:gap-3 md:gap-5 lg:gap-8 justify-center flex-wrap">
+        <NavigationMenu className="mx-auto mb-2 sm:mb-3 md:mb-6 lg:mb-8">
+          <NavigationMenuList className="flex gap-1 sm:gap-2 md:gap-5 lg:gap-8 justify-center flex-wrap">
             {navigationItems.map((item, index) => (
               <NavigationMenuItem key={index}>
                 <NavigationMenuLink
                   onClick={() => handleNavigation(item.id)}
-                  className={`[font-family:'Inter',Helvetica] text-xs sm:text-sm md:text-lg lg:text-[26px] tracking-[0] leading-[normal] cursor-pointer transition-all hover:font-semibold ${
+                  className={`[font-family:'Inter',Helvetica] text-[10px] sm:text-xs md:text-lg lg:text-[26px] tracking-[0] leading-[normal] cursor-pointer transition-all hover:font-semibold ${
                     item.active ? "font-semibold" : "font-normal"
                   } text-black`}
                 >
@@ -43,15 +43,15 @@ export const HeroSection = (): JSX.Element => {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <div className="w-full max-w-[1357px] mx-auto rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[11px] overflow-hidden bg-white">
-          <img
+        <div className="w-full max-w-[1357px] mx-auto rounded-[4px] sm:rounded-[6px] md:rounded-[10px] lg:rounded-[11px] overflow-hidden bg-white">
+          <video
             className="w-full h-auto object-cover"
             autoPlay
             loop
             muted
             playsInline
           >
-            <source src="/cow%20video%20.mp4" type="video/mp4" />
+            <source src="/cow-video.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
