@@ -18,8 +18,8 @@ const services = [
 
 export const ProductShowcaseSection = (): JSX.Element => {
   return (
-    <section id="service-showcase" className="w-full bg-white py-1 relative overflow-hidden">
-      <div className="w-full px-0"> 
+    <section id="service-showcase" className="w-full bg-white py-20 relative overflow-hidden  py-4">
+      <div className="w-full px-0 sm:px-4 md:px-12 lg:px-20 xl:px-32 2xl:px-40"> 
       
         {/* Header Section */}
         <div className="text-center mb-8 sm:mb-12 px-4">
@@ -32,7 +32,7 @@ export const ProductShowcaseSection = (): JSX.Element => {
         </div>
 
         {/* Hero Area */}
-        <div className="relative w-full min-h-[600px] md:min-h-[750px] mb-6">
+        <div className="relative w-full min-h-[600px] md:min-h-[750px] mb-">
           <img
             className="absolute inset-0 w-full h-[1550px] object-cover"
             alt="Farm background"
@@ -62,14 +62,14 @@ export const ProductShowcaseSection = (): JSX.Element => {
 
           {/* Services List Section */}
           <div className="relative z-20 pt-[200px] md:pt-[280px] px-4 md:px-12 flex flex-col items-center">
-            <div className="mb-6 w-full max-w-6xl">
-              <h3 className="font-inter font-semibold text-white text-lg md:text-3xl border-l-4 border-[#ff860e] pl-4 drop-shadow-md inline-block">
+            <div className="mb-6 w-full max-w-6xl ">
+              <h3 className="font-inter font-semibold text-white text-lg md:text-3xl border-l-4 border-[#ff860e] pl-4 drop-shadow-md inline-block ">
                 List Of Farm Maintenance Service
               </h3>
             </div>
 
             {/* Grid layout */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl w-full pb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl w-full pb-10 py-20">
               {services.map((service) => (
                 <Card
                   key={service.id}

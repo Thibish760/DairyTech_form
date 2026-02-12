@@ -46,7 +46,7 @@ export const ServiceCategorySection = (): JSX.Element => {
 
   return (
     <section id="shop" className="w-full py-16  bg-[#c4e2ff] relative ">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto mb-">
         <div className="flex items-center justify-between  mb-12 px-5">
           <h2 className="[font-family:'Inter',Helvetica] font-bold text-black text-3xl tracking-[0] leading-[normal] w-full text-right-center ">
             Product
