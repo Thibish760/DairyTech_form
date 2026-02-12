@@ -72,18 +72,17 @@ export const ServiceOverviewSection = (): JSX.Element => {
       <div className="max-w-[1168px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="flex flex-col">
-            <h2 className="[font-family:'Inter',Helvetica] font-semibold text-black text-[32px] tracking-[0] leading-[normal] mb-[28px]">
-              Why is our dairy &amp; cow farm maintenance company the right
-              choice for your farm?
+            <h2 className="[font-family:'Inter',Helvetica] font-medium  text-[26px] text-justify tracking-[0] leading-[normal] mb-[30px]">
+              Why is our dairy &amp; cow farm maintenance company the right choice for your farm?
             </h2>
 
-            <p className="[font-family:'Inter',Helvetica] font-medium text-[#605a5a] text-[26px] text-justify tracking-[0] leading-[normal] mb-[71px]">
+            <p className="[font-family:'Inter',Helvetica] font-medium text-[#605a5a] text-[20px]  text-justify tracking-[0] leading-[normal] mb-[70px]">
               Built on hands-on dairy farm experience, we understand cow health,
               hygiene, and equipment care. Our solutions are practical,
               field-tested, and focused on long-term farm success.
             </p>
 
-            <div className="flex gap-16 mb-[106px]">
+            <div className="flex gap-16 mb-[110px]">
               {socialIcons.map((icon, index) => (
                 <img
                   key={`social-${index}`}
@@ -142,3 +141,5 @@ export const ServiceOverviewSection = (): JSX.Element => {
     </section>
   );
 };
+
+
