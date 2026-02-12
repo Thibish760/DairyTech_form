@@ -46,9 +46,14 @@ export const HeroSection = (): JSX.Element => {
         <div className="w-full max-w-[1357px] mx-auto rounded-[6px] sm:rounded-[8px] md:rounded-[10px] lg:rounded-[11px] overflow-hidden bg-white">
           <img
             className="w-full h-auto object-cover"
-            alt="Farm landscape with cows grazing in a pastoral setting"
-            src="/image-347.png"
-          />
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src="/cow%20video%20.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </div>
     </section>
