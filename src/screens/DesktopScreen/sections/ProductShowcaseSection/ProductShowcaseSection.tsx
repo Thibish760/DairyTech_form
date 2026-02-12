@@ -45,10 +45,10 @@ export const ServiceCategorySection = (): JSX.Element => {
   };
 
   return (
-    <section id="shop" className="w-full py-16 bg-[#c4e2ff] relative ">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-between mb-12">
-          <h2 className="[font-family:'Inter',Helvetica] font-bold text-black text-3xl tracking-[0] leading-[normal]">
+    <section id="shop" className="w-full py-16  bg-[#c4e2ff] relative ">
+      <div className="max-w-5xl mx-auto">
+        <div className="flex items-center justify-between  mb-12 px-5">
+          <h2 className="[font-family:'Inter',Helvetica] font-bold text-black text-3xl tracking-[0] leading-[normal] w-full text-right-center ">
             Product
           </h2>
           <button onClick={handleNavigate} className="p-4 bg-[#032a4a] hover:bg-[#032a4a]/80 rounded-full transition-all duration-300 flex items-center justify-center">
@@ -56,11 +56,10 @@ export const ServiceCategorySection = (): JSX.Element => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1150px] mx-auto">
-          {products.map((product, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-9 max-w-[90%] md:max-w-full px-4 mx-auto">          {products.map((product, index) => (
             <Card
               key={index}
-              className="bg-white rounded-[10px] overflow-hidden shadow-[0px_4px_4px_#00000040] border-0"
+              className="bg-white rounded-[10px] woverflow-hidden shadow-[0px_4px_4px_#00000040] border-0"
             >
               <CardContent className="p-[13px] flex flex-col h-full">
                 <div className="w-full h-[291px] flex bg-[#c4d1d48f] rounded-[10px] overflow-hidden mb-[20px]">

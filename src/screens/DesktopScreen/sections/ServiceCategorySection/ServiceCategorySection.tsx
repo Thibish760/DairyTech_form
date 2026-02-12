@@ -18,98 +18,81 @@ const services = [
 
 export const ProductShowcaseSection = (): JSX.Element => {
   return (
-    // Changed py-20 to py-12 to fit "one frame" better, and w-full
-    <section id="service-showcase" className="w-full bg-white py-[1px] relative overflow-hidden">
-      {/* Container removed or set to max-w-none to eliminate side gaps */}
+    <section id="service-showcase" className="w-full bg-white py-1 relative overflow-hidden">
       <div className="w-full px-0"> 
       
         {/* Header Section */}
-        <div className="text-center mb-12">
-          <p className="font-inter font-bold text-[#ff860e] text-xl mb-2">
+        <div className="text-center mb-8 sm:mb-12 px-4">
+          <p className="font-inter font-bold text-[#ff860e] text-sm md:text-xl mb-1">
             Service Category
           </p>
-          <h2 className="font-inter font-bold text-black text-[40px]">
+          <h2 className="font-inter font-bold text-black text-2xl md:text-[40px] leading-tight">
             Service That We Provide
           </h2>
         </div>
 
-        {/* Hero Area - Now Edge to Edge */}
-        <div className="relative w-full min-h-[750px] mb-10">
+        {/* Hero Area */}
+        <div className="relative w-full min-h-[600px] md:min-h-[750px] mb-6">
           <img
-            className="absolute inset-0 w-full h-[800px] object-cover opacity-80"
+            className="absolute inset-0 w-full h-[1550px] object-cover"
             alt="Farm background"
             src="/image-348p.png"
           />
 
-          {/* SVG Overlay - Scaled to width */}
-          <div className="absolute top-[-9px] left-0 w-full flex justify-center z-10">
-            <div className="relative w-full max-w-[1109px]">
-               <img
-                className="w-full h-[150px]"
-                alt="Rectangle overlay"
-                src="/rectangle-483.svg"
-              />
-              {/* Tabs centered inside the SVG area */}
-              <div className="absolute inset-0 top-9 flex justify-center items-start px-4">
-                <Tabs defaultValue="farm-management" className="w-full max-w-[922px]">
-                  <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-4 bg-transparent h-auto p-3">
+          {/* Fixed Category Bar: Matches your second design image */}
+          <div className="absolute top-0 left-0 w-full flex justify-center z-10 px-2 sm:px-4">
+            <div className="bg-white rounded-b-[30px] md:rounded-b-[50px] px-4 md:px-10 pb-6 md:pb-10 pt-4 shadow-xl w-full max-w-[1100px] flex flex-col items-center">
+              
+              <Tabs defaultValue="farm-management" className="w-full">
+                {/* Scrollable on mobile, centered on desktop */}
+                  <TabsList className="grid grid-cols-2 md:flex md:flex-row md:justify-center gap-3 md:gap-6 bg-transparent h-auto w-full py-2">
                     {categories.map((category) => (
                       <TabsTrigger
                         key={category.id}
                         value={category.id}
-                        className="h-[60px] rounded-[10px] border border-solid data-[state=active]:bg-white data-[state=active]:border-[#2874f0] data-[state=inactive]:bg-[#c4d1d48f] data-[state=inactive]:border-[#999999] font-inter font-medium text-black text-lg md:text-xl shadow-sm"
+                        className="whitespace-normal md:whitespace-nowrap min-w-0 md:min-w-[220px] h-[45px] md:h-[65px] rounded-[10px] border border-[#999999] bg-[#e6ecef] data-[state=active]:bg-white data-[state=active]:border-[#2874f0] data-[state=active]:text-[#2874f0] font-inter font-semibold text-black text-[10px] sm:text-xs md:text-lg transition-all shadow-sm"
                       >
                         {category.label}
                       </TabsTrigger>
                     ))}
                   </TabsList>
-                </Tabs>
-              </div>
+              </Tabs>
             </div>
           </div>
 
-          {/* Services List Section - Inside Hero Area */}
-          <div className="relative z-32 pt-[320px] px-6 md:px-12 lg:px-20 flex flex-col items-center">
-            <div className="mb-10 w-full max-w-6xl">
-              <h3 className="font-inter font-semibold text-white  text-3xl text-center border-l-4 border-[#ff860e] pl-4 drop-shadow-lg inline-block">
+          {/* Services List Section */}
+          <div className="relative z-20 pt-[200px] md:pt-[280px] px-4 md:px-12 flex flex-col items-center">
+            <div className="mb-6 w-full max-w-6xl">
+              <h3 className="font-inter font-semibold text-white text-lg md:text-3xl border-l-4 border-[#ff860e] pl-4 drop-shadow-md inline-block">
                 List Of Farm Maintenance Service
               </h3>
             </div>
 
-            {/* Grid optimized for full width - centered */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl w-full">
+            {/* Grid layout */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl w-full pb-10">
               {services.map((service) => (
                 <Card
                   key={service.id}
-                  className="relative w-full h-[280px] bg-[#f9fef8] rounded-[15px] overflow-hidden shadow-lg border-0 group"
+                  className="relative w-full h-[280px] bg-white rounded-[15px] overflow-hidden shadow-2xl border-0 group"
                 >
                   <CardContent className="p-0 relative w-full h-full">
                     <img
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       alt={service.title}
                       src={service.image}
                     />
-
-                    {/* Gradient & Content Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent flex flex-col justify-end p-5">
-                      <h4 className="font-inter font-semibold text-white text-lg mb-1">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-5">
+                      <h4 className="font-inter font-semibold text-white text-base md:text-lg mb-1">
                         {service.title}
                       </h4>
-                      <p className="font-inter font-normal text-[#ececec] text-xs mb-4">
+                      <p className="font-inter font-normal text-gray-200 text-xs mb-4 line-clamp-2">
                         {service.description}
                       </p>
-                      
                       <div className="flex gap-2">
-                        <Button
-                          variant="ghost"
-                          className="h-9 px-4 bg-white/20 hover:bg-white/40 backdrop-blur-md rounded-full font-inter font-medium text-white text-xs border border-white/30"
-                        >
+                        <Button variant="ghost" className="h-9 px-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-white text-xs border border-white/20">
                           View
                         </Button>
-                        <Button
-                          variant="default"
-                          className="h-9 flex-1 bg-white hover:bg-gray-100 rounded-full font-inter font-medium text-black text-xs"
-                        >
+                        <Button className="h-9 flex-1 bg-white hover:bg-gray-100 rounded-full text-black text-xs font-bold">
                           Book Now
                         </Button>
                       </div>
