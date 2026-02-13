@@ -1,4 +1,8 @@
-export const FooterSection = (): JSX.Element => {
+interface FooterSectionProps {
+  onNavigateToShop?: () => void;
+}
+
+export const FooterSection = ({ onNavigateToShop }: FooterSectionProps): JSX.Element => {
   const quickLinks = [
     { label: "Home" },
     { label: "Shop" },

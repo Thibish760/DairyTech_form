@@ -1,3 +1,4 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -13,8 +14,26 @@ const navigationItems = [
   { label: "Contact", active: false, id: "contact" },
 ];
 
-export const HeroSection = (): JSX.Element => {
+interface HeroSectionProps {
+  showOnlyNav?: boolean;
+}
+
+export const HeroSection = ({ showOnlyNav }: HeroSectionProps): JSX.Element => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   const handleNavigation = (sectionId: string) => {
+    if (sectionId === "shop") {
+      if (location.pathname !== "/shop") navigate("/shop");
+      return;
+    }
+
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: sectionId } });
+      return;
+    }
+
     if (sectionId === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
@@ -43,18 +62,21 @@ export const HeroSection = (): JSX.Element => {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <div className="w-full max-w-[1357px] mx-auto rounded-[4px] sm:rounded-[6px] md:rounded-[10px] lg:rounded-[11px] overflow-hidden bg-white">
-          <video
-            className="w-full h-auto object-cover"
-            autoPlay
-            loop
-            muted
-            playsInline
-          >
-            <source src="/cow-video.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
+        {/* show video/hero content only on the home page and when not forcing nav-only */}
+        {!showOnlyNav && isHome && (
+          <div className="w-full max-w-[1357px] mx-auto rounded-[11px] overflow-hidden bg-black shadow-lg">
+            <video
+              className="w-full h-auto object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source src="/cow-video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        )}
       </div>
     </section>
   );
