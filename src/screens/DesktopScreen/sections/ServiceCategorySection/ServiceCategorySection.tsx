@@ -18,7 +18,7 @@ const services = [
 
 export const ServiceCategorySection = (): JSX.Element => {
   return (
-    <section id="service-showcase" className="w-full bg-white py-4 sm:py-6 md:py-8 relative overflow-hidden">
+    <section id="service-showcase" className="w-full bg-white relative overflow-hidden">
       <div className="w-full"> 
       
         {/* Header Section */}

@@ -45,8 +45,8 @@ export const ProductShowcaseSection = (): JSX.Element => {
   };
 
   return (
-    <section id="shop" className="w-full py-8 sm:py-12 md:py-16 bg-[#c4e2ff] relative">
-      <div className="max-w-5xl mx-auto">
+    <section id="shop" className="w-full py-8 sm:py-12 md:py-16 bg-[#c4e2ff]  relative mt-0">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex items-center justify-between mb-6 sm:mb-9 md:mb-12 px-3 sm:px-5">
           <h2 className="[font-family:'Inter',Helvetica] font-bold text-black text-lg sm:text-2xl md:text-3xl tracking-[0] leading-[normal] w-full text-right-center">
             Product
