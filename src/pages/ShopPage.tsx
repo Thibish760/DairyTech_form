@@ -199,6 +199,7 @@ import { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
 import { products } from "../lib/products";
 import { ChevronDownIcon } from "lucide-react";
+import { Navbar } from "../components/Navbar";
 
 export const ShopPage = (): JSX.Element => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -233,7 +234,7 @@ export const ShopPage = (): JSX.Element => {
   return (
     <div className="bg-white w-full min-h-screen flex flex-col">
       {/* show only the navbar from the homepage hero */}
-      <HeroSection showOnlyNav />
+      <Navbar showOnlyNav />
 
       {/* Hero Banner */}
       <div className="w-full h-full max-w-[1400px] max-h-[2000px] mx-auto rounded-[11px] md:h-80 bg-cover bg-center" 
