@@ -86,8 +86,8 @@ export const WhyChooseFarm = (): JSX.Element => {
             {/* Badges */}
             <div className="flex justify-start gap-3 sm:gap-4 md:gap-9 py-2 sm:py-3 md:py-4 flex-wrap mb-8 sm:mb-12 md:mb-16">
               {badges.map((badge, index) => (
-                <div className="flex flex-col items-center gap-1 sm:gap-2">
-                  <div className="w-8 sm:w-9 md:w-10 hover:scale-110 transition">
+                <div className="flex flex-col items-center gap-3 sm:gap-3 ">
+                  <div className="w-8 sm:w-9 md:w-12  hover:scale-110 transition gap-60">
                     <img
                       className="w-full h-full object-contain"
                       alt={badge.alt}
@@ -111,9 +111,9 @@ export const WhyChooseFarm = (): JSX.Element => {
                 className="bg-[#c4d1d4] rounded-lg sm:rounded-xl flex gap-3 sm:gap-4 md:gap-5 p-3 sm:p-4 md:p-[22px]"
               >
                 {/* Icon Box */}
-                <div className="bg-white rounded-[8px] sm:rounded-[10px] w-[48px] sm:w-[56px] md:w-[64px] h-[48px] sm:h-[56px] md:h-[64px] flex items-center justify-center flex-shrink-0">
+                <div className="bg-white rounded-[8px] sm:rounded-[10px] w-[48px] sm:w-[56px] md:w-[90px] h-[48px] sm:h-[80px] md:h-[110px] flex items-center justify-center flex-shrink-0">
                   <img
-                    className="w-[28px] sm:w-[32px] md:w-[38px] h-[28px] sm:h-[32px] md:h-[38px] object-contain"
+                    className=""
                     alt={card.title}
                     src={card.icon}
                   />
