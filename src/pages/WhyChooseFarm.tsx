@@ -45,7 +45,7 @@ const badges = [
 
 export const WhyChooseFarm = (): JSX.Element => {
   return (
-    <div className="w-full bg-white py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8">
+    <div id="about" className="w-full bg-white py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8">
       <div className="max-w-[1140px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 sm:gap-12 md:gap-16">
 

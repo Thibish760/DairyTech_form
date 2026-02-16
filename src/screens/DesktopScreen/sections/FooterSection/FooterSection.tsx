@@ -1,15 +1,40 @@
+import { useNavigate, useLocation } from "react-router-dom";
+
 interface FooterSectionProps {
   onNavigateToShop?: () => void;
 }
 
-export const FooterSection = ({ onNavigateToShop }: FooterSectionProps): JSX.Element => {
+export const FooterSection = ({  }: FooterSectionProps): JSX.Element => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const quickLinks = [
-    { label: "Home" },
-    { label: "Shop" },
-    { label: "Mobile App" },
-    { label: "Review" },
-    { label: "Helpline" },
+    { label: "Home", id: "home" },
+    { label: "Service", id: "service-showcase" },
+    { label: "Shop", id: "shop" },
+    { label: "About us", id: "about" },
+    { label: "Contact", id: "contact" },
   ];
+
+  const handleNavigation = (sectionId: string) => {
+    if (sectionId === "shop") {
+      if (location.pathname !== "/shop") navigate("/shop");
+      return;
+    }
+
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: sectionId } });
+      return;
+    }
+
+    if (sectionId === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const element = document.getElementById(sectionId);
+      element?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
 
   const products = [
     { label: "Basic Package" },
@@ -34,7 +59,7 @@ export const FooterSection = ({ onNavigateToShop }: FooterSectionProps): JSX.Ele
   ];
 
   return (
-    <footer className="w-full bg-black py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8">
+    <footer id="contact" className="w-full bg-black py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8">
       <div className="max-w-[1463px] mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12 mb-6 sm:mb-8 md:mb-12">
           <div className="flex flex-col gap-4 sm:gap-5 md:gap-6">
@@ -57,14 +82,14 @@ export const FooterSection = ({ onNavigateToShop }: FooterSectionProps): JSX.Ele
               Quick Links
             </h3>
             <nav className="flex flex-col gap-2 sm:gap-3 md:gap-4">
-              {quickLinks.map((link, index) => (
-                <a
-                  key={`quick-link-${index}`}
-                  href="#"
-                  className="[font-family:'Mochiy_Pop_P_One',Helvetica] font-normal text-[#ddd3ba] text-[11px] sm:text-[12px] md:text-[13.2px] tracking-[0] leading-[normal] hover:text-white transition-colors"
+              {quickLinks.map((link) => (
+                <button
+                  key={`quick-link-${link.id}`}
+                  onClick={() => handleNavigation(link.id)}
+                  className="text-left [font-family:'Mochiy_Pop_P_One',Helvetica] font-normal text-[#ddd3ba] text-[11px] sm:text-[12px] md:text-[13.2px] tracking-[0] leading-[normal] hover:text-white transition-colors cursor-pointer"
                 >
                   {link.label}
-                </a>
+                </button>
               ))}
             </nav>
           </div>
