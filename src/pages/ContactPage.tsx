@@ -1,16 +1,8 @@
 import { FooterSection } from "../screens/DesktopScreen/sections/FooterSection";
-
-import { HeroSection } from "../screens/DesktopScreen/sections/HeroSection";
 import { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 
-
-
 export const ContactPage = (): JSX.Element => {
-    const location = useLocation();
-    const isHome = location.pathname === "/";
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -150,18 +142,18 @@ export const ContactPage = (): JSX.Element => {
 
             {/* RIGHT */}
             <div className="md:w-1/2 w-full p-10 bg-white">
-              <h2 className="font-bold text-[26px] mb-6">
+              <h2 className="font-bold text-[28px] mb-8 text-black">
                 Send us a message
               </h2>
 
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-col gap-4"
+                className="flex flex-col gap-5"
               >
                 {/* row 1 */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="[font-family:'Inter',Helvetica] font-medium text-xs text-black block mb-1.5">
+                    <label className="font-medium text-sm text-black block mb-2">
                       First Name
                     </label>
                     <input
@@ -169,11 +161,11 @@ export const ContactPage = (): JSX.Element => {
                       placeholder="Enter Your First Name"
                       value={formData.firstName}
                       onChange={handleChange}
-                      className="input-style"
+                      className="w-full px-4 py-3 rounded-lg bg-[#eef3ff] border-0 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#8dc201]/20"
                     />
                   </div>
                   <div>
-                    <label className="[font-family:'Inter',Helvetica] font-medium text-xs text-black block mb-1.5">
+                    <label className="font-medium text-sm text-black block mb-2">
                       Last Name
                     </label>
                     <input
@@ -181,7 +173,7 @@ export const ContactPage = (): JSX.Element => {
                       placeholder="Enter Your Last Name"
                       value={formData.lastName}
                       onChange={handleChange}
-                      className="input-style"
+                      className="w-full px-4 py-3 rounded-lg bg-[#eef3ff] border-0 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#8dc201]/20"
                     />
                   </div>
                 </div>
@@ -189,33 +181,35 @@ export const ContactPage = (): JSX.Element => {
                 {/* row 2 */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="[font-family:'Inter',Helvetica] font-medium text-xs text-black block mb-1.5">
+                    <label className="font-medium text-sm text-black block mb-2">
                       Email
                     </label>
                     <input
                       name="email"
+                      type="email"
                       placeholder="Enter Your Email ID"
                       value={formData.email}
                       onChange={handleChange}
-                      className="input-style"
+                      className="w-full px-4 py-3 rounded-lg bg-[#eef3ff] border-0 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#8dc201]/20"
                     />
                   </div>
                   <div>
-                    <label className="[font-family:'Inter',Helvetica] font-medium text-xs text-black block mb-1.5">
+                    <label className="font-medium text-sm text-black block mb-2">
                       Contact Detail
                     </label>
                     <input
                       name="contactDetail"
+                      type="tel"
                       placeholder="Enter Your Phone Number"
                       value={formData.contactDetail}
                       onChange={handleChange}
-                      className="input-style"
+                      className="w-full px-4 py-3 rounded-lg bg-[#eef3ff] border-0 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#8dc201]/20"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="[font-family:'Inter',Helvetica] font-medium text-xs text-black block mb-1.5">
+                  <label className="font-medium text-sm text-black block mb-2">
                     Message
                   </label>
                   <textarea
@@ -223,15 +217,15 @@ export const ContactPage = (): JSX.Element => {
                     placeholder="Enter Your Querys"
                     value={formData.message}
                     onChange={handleChange}
-                    rows={5}
-                    className="input-style resize-none"
+                    rows={7}
+                    className="w-full px-4 py-3 rounded-lg bg-[#eef3ff] border-0 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#8dc201]/20 resize-none"
                   />
                 </div>
 
-                <div className="flex justify-end">
+                <div className="flex justify-end mt-2">
                   <button
                     type="submit"
-                    className="bg-[#8dc201] px-8 py-2.5 rounded-md font-semibold hover:opacity-90"
+                    className="bg-[#8dc201] text-black px-10 py-3 rounded-lg font-semibold text-[15px] hover:bg-[#7ab001] transition-colors"
                   >
                     Send a message
                   </button>
