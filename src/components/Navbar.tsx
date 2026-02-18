@@ -4,7 +4,7 @@ const navigationItems = [
   { label: "Home", id: "home" },
   { label: "Service", id: "service-showcase" },
   { label: "Shop", id: "shop" },
-  { label: "About us", id: "about" },
+  { label: "About", id: "Aboutus" },
   { label: "Contact", id: "contact" },
 ];
 
@@ -25,7 +25,10 @@ export const Navbar = ({ showOnlyNav }: NavbarProps): JSX.Element => {
       if (location.pathname !== "/contact") navigate("/contact");
       return;
     }
-
+    if (sectionId === "Aboutus") {
+      if (location.pathname !== "/about") navigate("/about");
+      return;
+    }
     if (location.pathname !== "/") {
       navigate("/", { state: { scrollTo: sectionId } });
       return;
