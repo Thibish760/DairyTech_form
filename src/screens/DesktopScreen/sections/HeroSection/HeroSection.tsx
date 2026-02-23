@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import Navbar from "../../../../components/Navbar";
+import {useEffect, useRef} from "react";
 
 interface HeroSectionProps {
   showOnlyNav?: boolean;
@@ -8,6 +9,31 @@ interface HeroSectionProps {
 export const HeroSection = ({ showOnlyNav }: HeroSectionProps): JSX.Element => {
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+useEffect(() => {
+  if (videoRef.current) {
+    videoRef.current.defaultMuted = true;
+    videoRef.current.muted = true;
+    
+    // Add event listener for Edge compatibility
+    const playVideo = () => {
+      videoRef.current?.play().catch(error => {
+        console.warn("Autoplay prevented:", error);
+      });
+    };
+    
+    // Try to play immediately
+    playVideo();
+    
+    // Also try on user interaction for Edge
+    document.addEventListener('click', playVideo, { once: true });
+    
+    return () => {
+      document.removeEventListener('click', playVideo);
+    };
+  }
+}, []);
 
   return (
     <>
@@ -16,13 +42,17 @@ export const HeroSection = ({ showOnlyNav }: HeroSectionProps): JSX.Element => {
         <section className="w-full min-h-screen relative">
           <div className="w-full h-screen relative overflow-hidden">
             <video
+              ref={videoRef}
               className="w-full h-full object-cover"
               autoPlay
               loop
               muted
               playsInline
+              preload="auto"
+              crossOrigin="anonymous"
             >
-              <source src="/cow-video.mp4" type="video/mp4" />
+              <source src="/cow-video.mp4" type="video/mp4; codecs='avc1.42E01E, mp4a.40.2'" />
+              <source src="/cow-video.webm" type="video/webm" />
               Your browser does not support the video tag.
             </video>
 
