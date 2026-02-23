@@ -244,7 +244,7 @@ export const BuyNowPage = (): JSX.Element => {
               />
 
               <Button className="ml-6 bg-[#8dc63f] text-black font-semibold px-8">
-                Buy Now
+                Let's Talk
               </Button>
             </div>
 
@@ -341,7 +341,7 @@ export const BuyNowPage = (): JSX.Element => {
 
               <Link to={`/buy?id=${p.id}`}>
                 <Button className="bg-[#032a4a] hover:bg-[#032a4a]/90 text-white font-bold text-sm rounded-[5px] h-[35px] px-6">
-                  Order Now
+                  Let's Talk
                 </Button>
               </Link>
             </div>

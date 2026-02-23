@@ -25,6 +25,7 @@ import { ShopPage } from "./pages/ShopPage"; // or wherever your shop page is
 import { BuyNowPage } from "./pages/BuyNowPage";
 import { ContactPage } from "./pages/ContactPage";
 import Aboutus from "./pages/About";
+import { ServiceView } from "./screens/DesktopScreen/sections/ServiceOverviewSection";
 
 export function App() {
   return (
@@ -35,6 +36,7 @@ export function App() {
         <Route path="/buy" element={<BuyNowPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<Aboutus />} />
+        <Route path="/service" element={<ServiceView />} />
       </Routes>
     </BrowserRouter>
   );

@@ -86,7 +86,7 @@ export const WhyChooseFarm = (): JSX.Element => {
             {/* Badges */}
             <div className="flex justify-start gap-3 sm:gap-4 md:gap-9 py-2 sm:py-3 md:py-4 flex-wrap mb-8 sm:mb-12 md:mb-16">
               {badges.map((badge, index) => (
-                <div className="flex flex-col items-center gap-3 sm:gap-3 ">
+                <div key={index} className="flex flex-col items-center gap-3 sm:gap-3 ">
                   <div className="w-8 sm:w-9 md:w-12  hover:scale-110 transition gap-60">
                     <img
                       className="w-full h-full object-contain"
