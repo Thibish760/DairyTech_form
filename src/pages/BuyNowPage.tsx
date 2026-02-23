@@ -139,8 +139,8 @@
 
 // export default BuyNowPage;
 
-import { useState } from "react";
-import { useSearchParams, useNavigate, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { products, type Product } from "../lib/products";
 import { FooterSection } from "../screens/DesktopScreen/sections/FooterSection";
 import { HeroSection } from "../screens/DesktopScreen/sections/HeroSection";
@@ -150,6 +150,9 @@ import { Card, CardContent } from "../components/ui/card";
 export const BuyNowPage = (): JSX.Element => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
   const productId = Number(searchParams.get("id"));
   const product = products.find((p) => p.id === productId) as Product | undefined;
 
@@ -243,7 +246,9 @@ export const BuyNowPage = (): JSX.Element => {
                 className="w-16 border px-2 py-1 rounded"
               />
 
-              <Button className="ml-6 bg-[#8dc63f] text-black font-semibold px-8">
+              <Button
+                onClick={() => navigate('/enquiry', { state: { service: product } })}
+                className="ml-6 bg-[#8dc63f] text-black font-semibold px-8 cursor-pointer">
                 Let's Talk
               </Button>
             </div>
@@ -259,11 +264,10 @@ export const BuyNowPage = (): JSX.Element => {
               <button
                 key={t}
                 onClick={() => setTab(t as any)}
-                className={`pb-2 ${
-                  tab === t
+                className={`pb-2 ${tab === t
                     ? "border-b-2 border-black font-semibold"
                     : "text-gray-500"
-                }`}
+                  }`}
               >
                 {t === "features" && "Key Features Section"}
                 {t === "specs" && "Specifications Section"}
@@ -297,60 +301,63 @@ export const BuyNowPage = (): JSX.Element => {
           </div>
         </div>
 
-{/* SIMILAR PRODUCTS */}
-<div className="mt-12">
-  <h3 className="text-sm font-semibold mb-4">
-    View Similar Products
-  </h3>
+        {/* SIMILAR PRODUCTS */}
+        <div className="mt-12">
+          <h3 className="text-sm font-semibold mb-4">
+            View Similar Products
+          </h3>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    {products
-      .filter((p) => p.id !== product.id)
-      .slice(0, 4)
-      .map((p, index) => (
-        <Card
-          key={index}
-          className="bg-white rounded-[10px] overflow-hidden shadow-[0px_4px_4px_#00000040] border-0"
-        >
-          <CardContent className="p-[13px] flex flex-col h-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {products
+              .filter((p) => p.id !== product.id)
+              .slice(0, 4)
+              .map((p, index) => (
+                <Card
+                  key={p.id}
+                  className="bg-white rounded-[10px] overflow-hidden shadow-[0px_4px_4px_#00000040] border-0"
+                >
+                  <CardContent className="p-[13px] flex flex-col h-full">
 
-            {/* IMAGE BOX */}
-            <div className="w-full h-[200px] flex bg-[#c4d1d48f] rounded-[10px] overflow-hidden mb-5 items-center justify-center">
-              <img
-                className="max-h-full object-contain"
-                src={p.image}
-                alt={p.name}
-              />
-            </div>
+                    {/* IMAGE BOX */}
+                    <div className="w-full h-[200px] flex bg-[#c4d1d48f] rounded-[10px] overflow-hidden mb-5 items-center justify-center">
+                      <img
+                        className="max-h-full object-contain"
+                        src={p.image}
+                        alt={p.name}
+                      />
+                    </div>
 
-            {/* TITLE */}
-            <h3 className="font-semibold text-black text-base text-center mb-1">
-              {p.name}
-            </h3>
+                    {/* TITLE */}
+                    <h3 className="font-semibold text-black text-base text-center mb-1">
+                      {p.name}
+                    </h3>
 
-            {/* DESCRIPTION */}
-            <p className="font-medium text-[#322e2e] text-xs line-clamp-2 mb-auto">
-              {p.description}
-            </p>
+                    {/* DESCRIPTION */}
+                    <p className="font-medium text-[#322e2e] text-xs line-clamp-2 mb-auto">
+                      {p.description}
+                    </p>
 
-            {/* PRICE + BUTTON */}
-            <div className="flex items-center justify-between mt-3">
-              <div className="font-bold text-black text-base">
-                {p.price}
-              </div>
+                    {/* PRICE + BUTTON */}
+                    <div className="flex items-center justify-between mt-3">
+                      <div className="font-bold text-black text-base">
+                        {p.price}
+                      </div>
 
-              <Link to={`/buy?id=${p.id}`}>
-                <Button className="bg-[#032a4a] hover:bg-[#032a4a]/90 text-white font-bold text-sm rounded-[5px] h-[35px] px-6">
-                  Let's Talk
-                </Button>
-              </Link>
-            </div>
+                      <Button 
+                        onClick={() => {
+                          window.scrollTo(0, 0);
+                          navigate(`/buy?id=${p.id}`);
+                        }}
+                        className="bg-[#032a4a] hover:bg-[#032a4a]/90 text-white [font-family:'Inter',Helvetica] font-bold text-xs sm:text-sm md:text-base rounded-[5px] h-[28px] sm:h-[32px] md:h-[35px] px-4 sm:px-6 md:px-8 cursor-pointer">
+                        View
+                      </Button>
+                    </div>
 
-          </CardContent>
-        </Card>
-      ))}
-  </div>
-</div>
+                  </CardContent>
+                </Card>
+              ))}
+          </div>
+        </div>
 
 
       </main>
