@@ -1,11 +1,16 @@
 import { ChevronRightIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { products } from "../../../../lib/products";
 
 export const ProductShowcaseSection = (): JSX.Element => {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
 
   return (
     <section id="shop" className="w-full py-8 sm:py-12 md:py-16 bg-[#c4e2ff]  relative mt-0">
@@ -46,8 +51,13 @@ export const ProductShowcaseSection = (): JSX.Element => {
                     {product.price}
                   </div>
 
-                  <Button onClick={() => navigate(`/buy?id=${product.id}`)} className="bg-[#032a4a] hover:bg-[#032a4a]/90 text-white [font-family:'Inter',Helvetica] font-bold text-xs sm:text-sm md:text-base rounded-[5px] h-[28px] sm:h-[32px] md:h-[35px] px-4 sm:px-6 md:px-8">
-                    Order Now
+                  <Button 
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                      navigate(`/buy?id=${product.id}`);
+                    }} 
+                    className="bg-[#032a4a] hover:bg-[#032a4a]/90 text-white [font-family:'Inter',Helvetica] font-bold text-xs sm:text-sm md:text-base rounded-[5px] h-[28px] sm:h-[32px] md:h-[35px] px-4 sm:px-6 md:px-8 cursor-pointer">
+                    View
                   </Button>
                 </div>
               </CardContent>

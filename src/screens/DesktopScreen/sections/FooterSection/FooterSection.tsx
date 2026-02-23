@@ -9,11 +9,11 @@ export const FooterSection = ({  }: FooterSectionProps): JSX.Element => {
   const location = useLocation();
 
   const quickLinks = [
-    { label: "Home", id: "home" },
-    { label: "Service", id: "service-showcase" },
-    { label: "Shop", id: "shop" },
-    { label: "About us", id: "about" },
-    { label: "Contact", id: "contact" },
+  { label: "Home", id: "home" },
+  { label: "Service", id: "service-showcase" },
+  { label: "Shop", id: "shop" },
+  { label: "About", id: "Aboutus" },
+  { label: "Contact", id: "contact" },
   ];
 
   const handleNavigation = (sectionId: string) => {

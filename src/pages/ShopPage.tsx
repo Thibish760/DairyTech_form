@@ -393,7 +393,7 @@ export const ShopPage = (): JSX.Element => {
   
                         <Link to={`/buy?id=${product.id}`}>
                           <Button className="bg-[#032a4a] hover:bg-[#032a4a]/90 text-white [font-family:'Inter',Helvetica] font-bold text-xs sm:text-sm md:text-base rounded-[5px] h-[28px] sm:h-[32px] md:h-[35px] px-4 sm:px-6 md:px-8">
-                            Order Now
+                            View
                           </Button>
                         </Link>
                       </div>

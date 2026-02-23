@@ -3,6 +3,8 @@ import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "../../../../components/ui/tabs";
 import { services } from "../../../../lib/services";
+import { useEffect } from "react";
+
 
 const categories = [
   { id: "farm-management", label: "Farm Management" },
@@ -13,6 +15,9 @@ const categories = [
 
 export const ServiceCategorySection = (): JSX.Element => {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <section id="service-showcase" className="w-full bg-white relative overflow-hidden">
       <div className="w-full"> 
@@ -86,12 +91,17 @@ export const ServiceCategorySection = (): JSX.Element => {
                       </p>
                       <div className="flex gap-1.5 sm:gap-2">
                         <Button 
-                          onClick={() => navigate('/service', { state: { service } })}
+                          onClick={() => {
+                            window.scrollTo(0, 0);
+                            navigate('/service', { state: { service } });
+                          }}
                           variant="ghost" 
                           className="h-6 sm:h-8 md:h-9 px-2 sm:px-3 md:px-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-white text-[9px] sm:text-[10px] md:text-xs border border-white/20">
                           View
                         </Button>
-                        <Button className="h-6 sm:h-8 md:h-9 flex-1 bg-white hover:bg-gray-100 rounded-full text-black text-[9px] sm:text-[10px] md:text-xs font-bold">
+                        <Button 
+                          onClick={() => navigate('/enquiry', { state: { service } })}
+                          className="h-6 sm:h-8 md:h-9 flex-1 bg-white hover:bg-gray-100 rounded-full text-black text-[9px] sm:text-[10px] md:text-xs font-bold cursor-pointer">
                           Let's Talk
                         </Button>
                       </div>

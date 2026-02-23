@@ -86,7 +86,9 @@ const ServiceView: React.FC = () => {
               <p className="text-sm text-gray-700 font-semibold leading-snug">
                 Share Your Requirements And Get<br />Expert Guidance Today.
               </p>
-              <Button className="bg-[#8cc63f] hover:bg-lime-600 text-white px-10 py-6 rounded-md text-xl font-bold transition-colors">
+              <Button 
+                onClick={() => navigate('/enquiry', { state: { service } })}
+                className="bg-[#8cc63f] hover:bg-lime-600 text-white px-10 py-6 rounded-md text-xl font-bold transition-colors cursor-pointer">
                 Let's Talk
               </Button>
             </div>
@@ -174,12 +176,17 @@ const ServiceView: React.FC = () => {
                       </p>
                       <div className="flex gap-1.5 sm:gap-2">
                         <Button 
-                          onClick={() => navigate('/service', { state: { service } })}
+                          onClick={() => {
+                            window.scrollTo(0, 0);
+                            navigate('/service', { state: { service } });
+                          }}
                           variant="ghost" 
                           className="h-6 sm:h-8 md:h-9 px-2 sm:px-3 md:px-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-white text-[9px] sm:text-[10px] md:text-xs border border-white/20">
                           View
                         </Button>
-                        <Button className="h-6 sm:h-8 md:h-9 flex-1 bg-white hover:bg-gray-100 rounded-full text-black text-[9px] sm:text-[10px] md:text-xs font-bold">
+                        <Button 
+                          onClick={() => navigate('/enquiry', { state: { service } })}
+                        className="h-6 sm:h-8 md:h-9 flex-1 bg-white hover:bg-gray-100 rounded-full text-black text-[9px] sm:text-[10px] md:text-xs font-bold cursor-pointer">
                           Let's Talk
                         </Button>
                       </div>
