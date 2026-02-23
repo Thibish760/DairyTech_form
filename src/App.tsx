@@ -26,6 +26,7 @@ import { BuyNowPage } from "./pages/BuyNowPage";
 import { ContactPage } from "./pages/ContactPage";
 import Aboutus from "./pages/About";
 import { ServiceView } from "./screens/DesktopScreen/sections/ServiceOverviewSection";
+import { EnquiryForm } from "./pages";
 
 export function App() {
   return (
@@ -37,6 +38,8 @@ export function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<Aboutus />} />
         <Route path="/service" element={<ServiceView />} />
+        <Route path="/enquiryform" element={<EnquiryForm />} />
+        <Route path="/enquiry" element={<EnquiryForm />} />
       </Routes>
     </BrowserRouter>
   );
