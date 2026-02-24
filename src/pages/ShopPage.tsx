@@ -191,6 +191,8 @@
 //     </div>
 //   );
 // };
+
+
 import { useState, useMemo } from "react";
 import { FooterSection } from "../screens/DesktopScreen/sections/FooterSection";
 import { HeroSection } from "../screens/DesktopScreen/sections/HeroSection";
@@ -220,7 +222,7 @@ export const ShopPage = (): JSX.Element => {
   }, []);
 
   // Filter products based on selected category and search term
-  const filteredProducts = useMemo(() => {
+  let filteredProducts = useMemo(() => {
     return products.filter((product) => {
       const matchesCategory = !selectedCategory || product.category === selectedCategory;
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -228,6 +230,27 @@ export const ShopPage = (): JSX.Element => {
       return matchesCategory && matchesSearch;
     });
   }, [selectedCategory, searchTerm]);
+
+  // Sort products based on sortBy
+  filteredProducts = useMemo(() => {
+    let sorted = [...filteredProducts];
+    if (sortBy === "Price: Low to High") {
+      sorted.sort((a, b) => {
+        const priceA = parseFloat(a.price.replace(/[^0-9.]/g, "")) || 0;
+        const priceB = parseFloat(b.price.replace(/[^0-9.]/g, "")) || 0;
+        return priceA - priceB;
+      });
+    } else if (sortBy === "Price: High to Low") {
+      sorted.sort((a, b) => {
+        const priceA = parseFloat(a.price.replace(/[^0-9.]/g, "")) || 0;
+        const priceB = parseFloat(b.price.replace(/[^0-9.]/g, "")) || 0;
+        return priceB - priceA;
+      });
+    } else if (sortBy === "Name: A to Z") {
+      sorted.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    return sorted;
+  }, [filteredProducts, sortBy]);
 
   const displayCategory = selectedCategory || "All Products";
 
@@ -313,7 +336,7 @@ export const ShopPage = (): JSX.Element => {
                   onClick={() => setShowSortDropdown(!showSortDropdown)}
                   className="px-4 py-2 text-sm text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2 bg-gray-50"
                 >
-                  <span>Filter: {sortBy === "none" ? "none" : sortBy}</span>
+                  <span>Sort: {sortBy === "none" ? "none" : sortBy}</span>
                   <ChevronDownIcon className={`w-4 h-4 transition-transform ${showSortDropdown ? 'rotate-180' : ''}`} />
                 </button>
 
