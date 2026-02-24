@@ -11,10 +11,7 @@ export const ContactPage = (): JSX.Element => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-  };
+
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -24,6 +21,25 @@ export const ContactPage = (): JSX.Element => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  
+  try {
+    const response = await fetch('http://localhost:5000/api/enquiries/submit-contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      alert("Message Sent!");
+      setFormData({ firstName: "", lastName: "", email: "", contactDetail: "", message: "" });
+    }
+  } catch (err) {
+    console.error("Error connecting to backend", err);
+  }
+};
 
   return (
     <>
@@ -223,7 +239,7 @@ export const ContactPage = (): JSX.Element => {
                 </div>
 
                 <div className="flex justify-end mt-2">
-                  <button
+                  <button onClick-={handleSubmit}
                     type="submit"
                     className="bg-[#8dc201] text-black px-10 py-3 rounded-lg font-semibold text-[15px] hover:bg-[#7ab001] transition-colors"
                   >

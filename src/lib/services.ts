@@ -221,5 +221,285 @@ export const services: Service[] = [
       "Reproductive health management",
       "Emergency animal care services"
     ]
+  },
+  {
+    id: 7,
+    title: "Premium Cattle Feed",
+    subtitle: "Nutritionally Balanced High-Quality Feed",
+    category: "Cow Food",
+    price: "₹5,000",
+    image: "/image-352.png",
+    description: "Premium quality cattle feed designed to enhance milk production and animal health",
+    keyFeatures: [
+      "Balanced Nutritional Composition",
+      "High Protein & Vitamin Content",
+      "Improved Milk Yield By 15-20%",
+      "Enhanced Cow Health",
+      "No Harmful Additives",
+      "Palatability Optimized",
+      "Cost-Effective Formula",
+      "Veterinary Approved"
+    ],
+    specifications: [
+      "Protein Content: 18-22%",
+      "Fat Content: 3-5%",
+      "Fiber Content: 8-12%",
+      "Packaging: 50 kg bags",
+      "Shelf Life: 6 months",
+      "Storage: Cool & dry place",
+      "Delivery: Bulk orders available"
+    ],
+    applications: [
+      "Daily feeding for dairy cattle",
+      "Lactating cow nutrition",
+      "Calf growth supplement",
+      "Mineral & vitamin supplementation",
+      "Breeding cow nutrition"
+    ]
+  },
+  {
+    id: 8,
+    title: "Mineral Supplement Mix",
+    subtitle: "Essential Minerals For Optimal Health",
+    category: "Cow Food",
+    price: "₹3,500",
+    image: "/image-351.png",
+    description: "Comprehensive mineral and vitamin mix for maintaining cow health and productivity",
+    keyFeatures: [
+      "Calcium & Phosphorus Balance",
+      "Essential Trace Minerals",
+      "Vitamin A, D & E Rich",
+      "Improves Bone Strength",
+      "Reduces Health Issues",
+      "Enhances Reproduction",
+      "Natural Ingredients",
+      "Easy To Mix & Feed"
+    ],
+    specifications: [
+      "Calcium: 20-25%",
+      "Phosphorus: 10-12%",
+      "Magnesium: 4-5%",
+      "Package Size: 25 kg",
+      "Form: Granules or Powder",
+      "Storage Stability: 12 months",
+      "Daily Dosage: 50-100 grams per animal"
+    ],
+    applications: [
+      "Bone and hoof health",
+      "Milk quality improvement",
+      "Breeding cycle regulation",
+      "Metabolic disorder prevention",
+      "Post-lactation recovery"
+    ]
+  },
+  {
+    id: 9,
+    title: "Milking Hygiene Service",
+    subtitle: "Professional Milking & Hygiene Management",
+    category: "Cow Service",
+    price: "₹2,00,000",
+    image: "/image-349.png",
+    description: "Complete milking hygiene and farm service ensuring highest quality milk production",
+    keyFeatures: [
+      "Pre-Milking Sanitization",
+      "Modern Milking Equipment",
+      "Post-Milking Teat Disinfection",
+      "Milk Temperature Control",
+      "Quality Testing",
+      "Daily Monitoring & Reports",
+      "Staff Training Programs",
+      "Compliance With Standards"
+    ],
+    specifications: [
+      "Service Frequency: Twice daily",
+      "Equipment: Automated milking machines",
+      "Hygiene Standard: Grade A certification",
+      "Temperature Control: 4°C storage",
+      "Testing: Daily quality checks",
+      "Staff: Trained technicians available",
+      "Response Time: On-site within 2 hours"
+    ],
+    applications: [
+      "Improving milk quality",
+      "Reducing somatic cell count",
+      "Preventing mastitis",
+      "Maintaining food safety",
+      "Premium milk production"
+    ]
+  },
+  {
+    id: 10,
+    title: "Breeding Management",
+    subtitle: "Professional Cattle Breeding & Selection",
+    category: "Cow Service",
+    price: "₹1,50,000",
+    image: "/image-353.png",
+    description: "Advanced breeding management services to improve herd productivity and genetics",
+    keyFeatures: [
+      "Genetic Selection Guidance",
+      "Heat Detection Monitoring",
+      "Artificial Insemination Services",
+      "Breed Improvement Program",
+      "Health Screening Before Breeding",
+      "Pregnancy Monitoring",
+      "Calf Health Management",
+      "Documentation & Records"
+    ],
+    specifications: [
+      "Expertise: 20+ years in breeding",
+      "Genetic Database: Access to best breeds",
+      "Success Rate: 85-90% conception",
+      "Follow-up: Regular monitoring included",
+      "Documentation: Complete breeding records",
+      "Advisory: Expert consultation available",
+      "Cost: Included per animal per cycle"
+    ],
+    applications: [
+      "Improving milk yield genetics",
+      "Disease resistance enhancement",
+      "Productivity improvement",
+      "Premium breed establishment",
+      "Herd performance optimization"
+    ]
+  },
+  {
+    id: 11,
+    title: "Biogas Plant Setup",
+    subtitle: "Complete Waste-to-Energy Solution",
+    category: "Waste Management",
+    price: "₹4,50,000",
+    image: "/image-352.png",
+    description: "Complete biogas plant installation to convert farm waste into renewable energy",
+    keyFeatures: [
+      "Methane Generation From Manure",
+      "Cooking Fuel Production",
+      "Electricity Generation Option",
+      "Solid Waste Fertilizer",
+      "Methane Capture System",
+      "Safety Equipment",
+      "Emission Control",
+      "Environmental Friendly"
+    ],
+    specifications: [
+      "Capacity: 10-50 cubic meters daily",
+      "Input: Cattle manure + agricultural waste",
+      "Output: 1-5 cubic meters methane daily",
+      "Installation Time: 2-3 months",
+      "Lifespan: 15-20 years",
+      "Maintenance: Quarterly service",
+      "ROI Timeline: 4-6 years"
+    ],
+    applications: [
+      "Renewable cooking fuel",
+      "Electricity generation",
+      "Organic manure production",
+      "Waste management solution",
+      "Carbon foot print reduction"
+    ]
+  },
+  {
+    id: 12,
+    title: "Waste Composting System",
+    subtitle: "Organic Fertilizer Production",
+    category: "Waste Management",
+    price: "₹80,000",
+    image: "/image-351.png",
+    description: "Advanced composting system to convert farm waste into premium organic fertilizer",
+    keyFeatures: [
+      "Rapid Decomposition Process",
+      "Organic Fertilizer Production",
+      "Reduces Landfill Waste",
+      "Improves Soil Quality",
+      "Pest & Odor Control",
+      "Moisture Management",
+      "Temperature Monitoring",
+      "Nutrient Rich Output"
+    ],
+    specifications: [
+      "Composting Period: 45-60 days",
+      "Capacity: 500-2000 kg per batch",
+      "Space Required: 200-500 sq feet",
+      "Equipment: Compost turner + storage bins",
+      "Output: 30-40% of input weight",
+      "Moisture Level: 50-60% optimal",
+      "C:N Ratio: 25-30:1 optimal"
+    ],
+    applications: [
+      "Farm fertilizer production",
+      "Soil enrichment",
+      "Reducing chemical fertilizer costs",
+      "Environmental sustainability",
+      "Organic farming certification support"
+    ]
+  },
+  {
+    id: 13,
+    title: "Organic Cattle Feed",
+    subtitle: "100% Organic Certified Feed",
+    category: "Cow Food",
+    price: "₹6,500",
+    image: "/image-349.png",
+    description: "Certified organic cattle feed produced without synthetic fertilizers and pesticides",
+    keyFeatures: [
+      "100% Organic Certified",
+      "No Synthetic Fertilizers",
+      "No Pesticide Residues",
+      "Higher Milk Fat Content",
+      "Better Taste & Aroma",
+      "Improved Animal Digestion",
+      "Premium Quality Ingredients",
+      "Sustainable Sourcing"
+    ],
+    specifications: [
+      "Certification: USDA Organic Certified",
+      "Protein Content: 16-20%",
+      "Fat Content: 4-6%",
+      "Fiber Content: 10-14%",
+      "Packaging: 50 kg bags",
+      "Shelf Life: 8 months",
+      "Storage: Cool & dry environment"
+    ],
+    applications: [
+      "Organic dairy farming",
+      "Premium milk production",
+      "Lactating cow nutrition",
+      "Organic certification compliance",
+      "Health-conscious farming practices"
+    ]
+  },
+  {
+    id: 14,
+    title: "Vitamin & Probiotic Supplement",
+    subtitle: "Advanced Digestive Health",
+    category: "Cow Food",
+    price: "₹4,200",
+    image: "/image-352.png",
+    description: "Complete vitamin and probiotic blend for enhanced digestive health and immunity",
+    keyFeatures: [
+      "Live Probiotic Cultures",
+      "Complete Vitamin Spectrum",
+      "Enzyme Complex",
+      "Improves Feed Conversion",
+      "Boosts Milk Production",
+      "Strengthens Immunity",
+      "Reduces Digestive Issues",
+      "Science-Based Formula"
+    ],
+    specifications: [
+      "Probiotic Count: 2 Billion CFU/gram",
+      "Vitamin A: 50,000 IU/kg",
+      "Vitamin D: 5,000 IU/kg",
+      "Vitamin E: 100 IU/kg",
+      "Package Size: 20 kg",
+      "Form: Granule or Powder",
+      "Storage Stability: 18 months"
+    ],
+    applications: [
+      "Improving feed digestion",
+      "Enhancing milk yield",
+      "Post-stress recovery",
+      "Immunity strengthening",
+      "Overall health maintenance"
+    ]
   }
 ];
