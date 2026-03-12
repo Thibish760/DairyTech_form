@@ -332,6 +332,7 @@ import { FooterSection } from "../screens/DesktopScreen/sections/FooterSection";
 import { ChevronDown, MapPin } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { products } from "../lib/products";
+import { services } from "../lib/services";
 
 const EnquiryForm = () => {
   const location = useLocation();
@@ -339,9 +340,13 @@ const EnquiryForm = () => {
   const initialService = location.state?.service;
 
   const handleEditItem = () => {
-    if (selectedProduct?.category === "Farm Management" || selectedProduct?.category === "Cow Food" || selectedProduct?.category === "Cow Service" || selectedProduct?.category === "Waste Management") {
-      navigate('/', { state: { scrollTo: 'service-showcase' } });
+    if (!selectedProduct) return;
+    // distinguish products vs services by their shape
+    if ('title' in selectedProduct) {
+      // it's a service object
+      navigate('/services', { state: { category: selectedProduct.category } });
     } else {
+      // product; return to shop
       navigate('/shop');
     }
   };
@@ -368,11 +373,12 @@ const EnquiryForm = () => {
         ...form,
         selectedProduct: {
           id: selectedProduct.id,
-          name: selectedProduct.name,
+          name: selectedProduct.name || selectedProduct.title,
           category: selectedProduct.category,
           price: selectedProduct.price,
           description: selectedProduct.description,
-          subtitle: selectedProduct.subtitle
+          subtitle: selectedProduct.subtitle,
+          title: selectedProduct.title
         }
       };
 
@@ -430,13 +436,25 @@ const EnquiryForm = () => {
   };
 
   const handleProductChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const productIdStr = e.target.value;
-    if (!productIdStr) {
+    const value = e.target.value;
+    if (!value) {
       setSelectedProduct(null);
       return;
     }
-    const productId = parseInt(productIdStr, 10);
-    const selected = products.find(p => p.id === productId);
+    
+    let selected = null;
+    
+    // Check if it's a product (prefix: product-X)
+    if (value.startsWith('product-')) {
+      const productId = parseInt(value.replace('product-', ''), 10);
+      selected = products.find(p => p.id === productId);
+    }
+    // Check if it's a service (prefix: service-X)
+    else if (value.startsWith('service-')) {
+      const serviceId = parseInt(value.replace('service-', ''), 10);
+      selected = services.find(s => s.id === serviceId);
+    }
+    
     if (selected) {
       setSelectedProduct(selected);
       if (errors.selectedProduct) {
@@ -463,7 +481,7 @@ const EnquiryForm = () => {
         <div className="w-full max-w-5xl">
 
           {/* Top Support Banner - Moved outside the card */}
-          <div className="flex items-center mb-6 px-2 space-x-64">
+          <div className="flex items-center mb-6 px-2 space-x-56">
             <p className="text-sm font-medium justify-between pr text-gray-500">
               If You Have Any Troubles Please Contact Ur Support
             </p>
@@ -483,29 +501,50 @@ const EnquiryForm = () => {
                 </label>
                 <div className="relative">
                   <select
-                    value={selectedProduct?.id ? String(selectedProduct.id) : ""}
+                    value={
+                    selectedProduct?.id
+                      ? // products have a `name` field, services use `title` – use that to determine prefix
+                        `${'name' in selectedProduct ? 'product' : 'service'}-${selectedProduct.id}`
+                      : ""
+                  }
                     onChange={handleProductChange}
                     className={`w-full appearance-none border-2 rounded-lg px-4 py-3 text-sm font-medium text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500 transition cursor-pointer ${errors.selectedProduct ? 'border-red-400' : 'border-gray-300'
                       }`}
                   >
                     <option value="">-- Choose a Product or Service --</option>
-                    {Array.isArray(products) && products.length > 0 ? (
-                      products.map((product) => {
-                        if (!product?.id) return null;
-                        return (
-                          <option key={product.id} value={String(product.id)}>
-                            {product.name} - {product.price}
-                          </option>
-                        );
-                      })
-                    ) : (
-                      <option disabled>Loading products...</option>
-                    )}
+                    <optgroup label="Products">
+                      {Array.isArray(products) && products.length > 0 ? (
+                        products.map((product) => {
+                          if (!product?.id) return null;
+                          return (
+                            <option key={`product-${product.id}`} value={`product-${product.id}`}>
+                              {product.name} - {product.price}
+                            </option>
+                          );
+                        })
+                      ) : (
+                        <option disabled>No products available</option>
+                      )}
+                    </optgroup>
+                    <optgroup label="Services">
+                      {Array.isArray(services) && services.length > 0 ? (
+                        services.map((service) => {
+                          if (!service?.id) return null;
+                          return (
+                            <option key={`service-${service.id}`} value={`service-${service.id}`}>
+                              {service.title}
+                            </option>
+                          );
+                        })
+                      ) : (
+                        <option disabled>No services available</option>
+                      )}
+                    </optgroup>
                   </select>
                   <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600 pointer-events-none" />
                 </div>
                 {errors.selectedProduct && <p className="text-red-500 text-xs mt-1">{errors.selectedProduct}</p>}
-                {selectedProduct && <p className="text-green-600 text-xs mt-1">✓ {selectedProduct.name} selected</p>}
+                {selectedProduct && <p className="text-green-600 text-xs mt-1">✓ {selectedProduct.name || selectedProduct.title} selected</p>}
               </div>
 
               {/* Name */}
@@ -688,16 +727,20 @@ const EnquiryForm = () => {
                 {selectedProduct ? (
                   <>
                     {/* Added overflow-hidden only to the image container to keep rounded corners */}
-                    <div className="p-4 overflow-hidden">
+                    <div className="p-4 overflow-hidden ">
                       <img
                         src={selectedProduct.image || "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1000"}
-                        alt={selectedProduct.name}
-                        className="w-full h-48 object-cover rounded-lg"
+                        alt={selectedProduct.name || selectedProduct.title}
+                        className={
+                          'name' in selectedProduct
+                            ? 'w-full h-36 object-contain rounded-lg'
+                            : 'w-full h-48 object-cover rounded-lg'
+                        }
                       />
                     </div>
 
                     <div className="px-5 pb-6">
-                      <h3 className="font-bold text-gray-800 text-sm">{selectedProduct.name}</h3>
+                      <h3 className="font-bold text-gray-800 text-sm">{selectedProduct.name || selectedProduct.title}</h3>
                       <p className="text-[10px] text-gray-500 mb-2">{selectedProduct.subtitle || selectedProduct.description}</p>
                       <p className="text-sm font-black text-gray-800 mb-4">{selectedProduct.price}</p>
 
@@ -706,7 +749,7 @@ const EnquiryForm = () => {
                       <div className="space-y-3 text-[11px] font-medium text-gray-500">
                         <div className="flex justify-between">
                           <span>Product</span>
-                          <span className="text-gray-700 text-right">{selectedProduct.name}</span>
+                          <span className="text-gray-700 text-right">{selectedProduct.name || selectedProduct.title}</span>
                         </div>
                         <div className="flex justify-between">
                           <span>Category</span>

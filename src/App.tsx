@@ -27,6 +27,7 @@ import { ContactPage } from "./pages/ContactPage";
 import Aboutus from "./pages/About";
 import { ServiceView } from "./screens/DesktopScreen/sections/ServiceOverviewSection";
 import { EnquiryForm } from "./pages";
+import { ServicesPage } from "./pages/ServicesPage";
 
 export function App() {
   return (
@@ -34,6 +35,7 @@ export function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
+        <Route path="/services" element={<ServicesPage />} />
         <Route path="/buy" element={<BuyNowPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<Aboutus />} />

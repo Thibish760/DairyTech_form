@@ -29,10 +29,9 @@ export default function Aboutus() {
   const fade = (delayClass: string) => `${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'} transition-all duration-700 ${delayClass}`;
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: "'DM Sans', 'Segoe UI', sans-serif" }}>
-
+    <div className="bg-white py-3 w-full min-h-screen flex flex-col">
       {/* Navigation */}
-      <Navbar showOnlyNav />
+      <Navbar  />
 
       {/* Styles converted to Tailwind — removed inline <style> block */}
 

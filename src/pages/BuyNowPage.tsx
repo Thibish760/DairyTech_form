@@ -138,21 +138,24 @@
 // };
 
 // export default BuyNowPage;
-
 import { useState, useEffect } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { products, type Product } from "../lib/products";
 import { FooterSection } from "../screens/DesktopScreen/sections/FooterSection";
 import { HeroSection } from "../screens/DesktopScreen/sections/HeroSection";
 import { Button } from "../components/ui/button";
 import { Card, CardContent } from "../components/ui/card";
+import { Navbar } from "../components/Navbar";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const BuyNowPage = (): JSX.Element => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location.pathname]);
+  }, [searchParams]); // Re-run when product ID changes
+
   const productId = Number(searchParams.get("id"));
   const product = products.find((p) => p.id === productId) as Product | undefined;
 
@@ -164,8 +167,8 @@ export const BuyNowPage = (): JSX.Element => {
     return (
       <div className="min-h-screen flex flex-col">
         <HeroSection showOnlyNav />
-        <div className="max-w-3xl mx-auto p-8">
-          Product not found.
+        <div className="max-w-3xl mx-auto p-8 text-center">
+          <p className="mb-4">Product not found.</p>
           <Button onClick={() => navigate("/shop")}>Back to shop</Button>
         </div>
         <FooterSection />
@@ -176,190 +179,153 @@ export const BuyNowPage = (): JSX.Element => {
   const thumbs = [product.image, "/motor-1.png", "/motor-1.png"];
 
   return (
-    <div className="bg-white min-h-screen flex flex-col">
-      <HeroSection showOnlyNav />
+    <div className="bg-white w-full min-h-screen flex flex-col">
+      <Navbar showOnlyNav />
 
-      {/* MAIN WRAPPER */}
       <main className="max-w-[1100px] mx-auto w-full px-6 py-10">
-
         {/* TOP PRODUCT SECTION */}
         <div className="grid md:grid-cols-2 gap-12 items-start">
-
           {/* LEFT IMAGE BLOCK */}
           <div className="flex flex-col items-center">
-
-            <img
+            <motion.img
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              key={activeThumb || product.image}
               src={activeThumb || product.image}
               alt={product.name}
-              className="w-[260px] h-[180px] object-contain"
+              className="w-[300px] h-[220px] object-contain mix-blend-multiply"
             />
 
-            {/* thumbnails */}
-            <div className="flex gap-4 mt-6">
-              {thumbs.map((t, i) => (
+            <div className="flex gap-4 mt-8">
+              {/* {thumbs.map((t, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveThumb(t)}
-                  className="w-16 h-12 border rounded-md flex items-center justify-center bg-white hover:border-black"
+                  className={`w-20 h-16 border-2 rounded-xl flex items-center justify-center transition-all ${
+                    (activeThumb || product.image) === t ? "border-[#032a4a]" : "border-gray-100 hover:border-gray-300"
+                  }`}
                 >
-                  <img src={t} className="w-full h-full object-contain" />
+                  <img src={t} className="w-full h-full object-contain p-2 mix-blend-multiply" />
                 </button>
-              ))}
+              ))} */}
             </div>
           </div>
 
           {/* RIGHT PRODUCT INFO */}
           <div>
-
-            <p className="text-sm text-gray-500">{product.category}</p>
-
-            <h1 className="text-2xl font-bold mt-1">
-              {product.name}
-            </h1>
-
-            <p className="text-sm text-gray-600 mt-1">
+            <p className="text-xs font-bold text-[#032a4a] uppercase tracking-widest">{product.category}</p>
+            <h1 className="text-3xl font-bold mt-2 text-[#032a4a]">{product.name}</h1>
+            <p className="text-sm text-gray-500 mt-2">
               {product.subtitle || "Belt Drive Model | 2 Bucket Capacity"}
             </p>
-
-            <div className="text-2xl font-extrabold mt-4">
-              {product.price}
-            </div>
-
-            <p className="text-gray-700 mt-4 leading-relaxed text-sm max-w-[500px]">
+            <div className="text-3xl font-extrabold mt-6 text-[#032a4a]">{product.price}</div>
+            <p className="text-gray-600 mt-6 leading-relaxed text-sm max-w-[500px]">
               {product.description}
             </p>
 
-            {/* QUANTITY + BUY */}
-            <div className="flex items-center gap-4 mt-6">
-
-              <span className="text-sm font-medium">
-                NUMBER OF PRODUCT:
-              </span>
-
-              <input
-                type="number"
-                min={1}
-                value={qty}
-                onChange={(e) =>
-                  setQty(Math.max(1, Number(e.target.value)))
-                }
-                className="w-16 border px-2 py-1 rounded"
-              />
+            <div className="flex items-center gap-4 mt-10">
 
               <Button
                 onClick={() => navigate('/enquiry', { state: { service: product } })}
-                className="ml-6 bg-[#8dc63f] text-black font-semibold px-8 cursor-pointer">
+                className="bg-[#8dc63f] hover:bg-[#043b66] text-white font-bold px-10 h-12 rounded-xl shadow-lg shadow-green-200 transition-all active:scale-95"
+              >
                 Let's Talk
               </Button>
             </div>
-
           </div>
         </div>
 
-        {/* TABS */}
-        <div className="mt-10">
-
-          <div className="flex gap-8 text-sm border-b pb-2">
-            {["features", "specs", "apps"].map((t) => (
+        {/* TABS SECTION */}
+        <div className="mt-16">
+          <div className="flex gap-8 border-b border-gray-100">
+            {(["features", "specs", "apps"] as const).map((t) => (
               <button
                 key={t}
-                onClick={() => setTab(t as any)}
-                className={`pb-2 ${tab === t
-                    ? "border-b-2 border-black font-semibold"
-                    : "text-gray-500"
-                  }`}
+                onClick={() => setTab(t)}
+                className={`pb-4 text-sm font-bold transition-all relative ${
+                  tab === t ? "text-[#032a4a]" : "text-gray-400 hover:text-gray-600"
+                }`}
               >
-                {t === "features" && "Key Features Section"}
-                {t === "specs" && "Specifications Section"}
-                {t === "apps" && "Applications Section"}
+                {t === "features" && "Key Features"}
+                {t === "specs" && "Specifications"}
+                {t === "apps" && "Applications"}
+                {tab === t && (
+                  <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#032a4a]" />
+                )}
               </button>
             ))}
           </div>
 
-          <div className="bg-[#e6ecef] mt-4 p-6 rounded-md text-sm">
-            {tab === "features" && (
-              <ul className="list-disc pl-6 space-y-1">
-                {product.keyFeatures?.map((feature, idx) => (
-                  <li key={idx}>{feature}</li>
-                ))}
-              </ul>
-            )}
-            {tab === "specs" && (
-              <ul className="list-disc pl-6 space-y-1">
-                {product.specifications?.map((spec, idx) => (
-                  <li key={idx}>{spec}</li>
-                ))}
-              </ul>
-            )}
-            {tab === "apps" && (
-              <ul className="list-disc pl-6 space-y-1">
-                {product.applications?.map((app, idx) => (
-                  <li key={idx}>{app}</li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-
-        {/* SIMILAR PRODUCTS */}
-        <div className="mt-12">
-          <h3 className="text-sm font-semibold mb-4">
-            View Similar Products
-          </h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products
-              .filter((p) => p.id !== product.id)
-              .slice(0, 4)
-              .map((p, index) => (
-                <Card
-                  key={p.id}
-                  className="bg-white rounded-[10px] overflow-hidden shadow-[0px_4px_4px_#00000040] border-0"
-                >
-                  <CardContent className="p-[13px] flex flex-col h-full">
-
-                    {/* IMAGE BOX */}
-                    <div className="w-full h-[200px] flex bg-[#c4d1d48f] rounded-[10px] overflow-hidden mb-5 items-center justify-center">
-                      <img
-                        className="max-h-full object-contain"
-                        src={p.image}
-                        alt={p.name}
-                      />
-                    </div>
-
-                    {/* TITLE */}
-                    <h3 className="font-semibold text-black text-base text-center mb-1">
-                      {p.name}
-                    </h3>
-
-                    {/* DESCRIPTION */}
-                    <p className="font-medium text-[#322e2e] text-xs line-clamp-2 mb-auto">
-                      {p.description}
-                    </p>
-
-                    {/* PRICE + BUTTON */}
-                    <div className="flex items-center justify-between mt-3">
-                      <div className="font-bold text-black text-base">
-                        {p.price}
-                      </div>
-
-                      <Button 
-                        onClick={() => {
-                          window.scrollTo(0, 0);
-                          navigate(`/buy?id=${p.id}`);
-                        }}
-                        className="bg-[#032a4a] hover:bg-[#032a4a]/90 text-white [font-family:'Inter',Helvetica] font-bold text-xs sm:text-sm md:text-base rounded-[5px] h-[28px] sm:h-[32px] md:h-[35px] px-4 sm:px-6 md:px-8 cursor-pointer">
-                        View
-                      </Button>
-                    </div>
-
-                  </CardContent>
-                </Card>
+          <div className="bg-gray-50/50 mt-6 p-8 rounded-2xl text-sm text-gray-600 leading-relaxed border border-gray-50">
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3 list-none">
+              {(tab === "features" ? product.keyFeatures : tab === "specs" ? product.specifications : product.applications)?.map((item, idx) => (
+                <li key={idx} className="flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 bg-[#8dc63f] rounded-full" />
+                  {item}
+                </li>
               ))}
+            </ul>
           </div>
         </div>
 
+        {/* SIMILAR PRODUCTS - UPDATED DESIGN */}
+        <div className="mt-20">
+          <h3 className="text-xl font-bold text-[#032a4a] mb-8">View Similar Products</h3>
 
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <AnimatePresence mode="popLayout">
+              {products
+                .filter((p) => p.id !== product.id)
+                .slice(0, 4)
+                .map((p, index) => (
+                  <motion.div
+                    key={p.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                  >
+                    <Card className="group bg-white rounded-2xl overflow-hidden border-0 shadow-[0_4px_20px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_35px_rgba(3,42,74,0.12)] transition-all duration-500 h-[24rem] w-[16rem] flex flex-col">
+                      <CardContent className="p-0 flex flex-col h-full">
+                        <div className="relative w-full h-48 bg-white overflow-hidden">
+                          <img
+                            className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-110 mix-blend-multiply"
+                            alt={p.name}
+                            src={p.image}
+                          />
+                          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-[#032a4a] uppercase tracking-wider shadow-sm">
+                            {p.category}
+                          </div>
+                        </div>
+
+                        <div className="p-5 flex flex-col flex-grow">
+                          <h3 className="font-bold text-[#032a4a] text-base mb-1 line-clamp-1 group-hover:text-[#8dc63f] transition-colors">
+                            {p.name}
+                          </h3>
+                          <p className="text-gray-500 text-[11px] leading-relaxed mb-4 line-clamp-2">
+                            {p.description}
+                          </p>
+
+                          <div className="mt-auto pt-4 border-t border-gray-170 flex items-center justify-between">
+                            <div className="flex flex-col">
+                              <span className="text-[9px] text-gray-400 font-bold uppercase tracking-tight">Price</span>
+                              <span className="font-extrabold text-[#032a4a] text-lg">{p.price}</span>
+                            </div>
+                            <Link to={`/buy?id=${p.id}`}>
+                              <Button className="bg-[#8dc63f]  hover:bg-[#043b66] text-white font-bold rounded-xl px-5 h-9 w-[100px] text-xs transition-all active:scale-95">
+                                View
+                              </Button>
+                            </Link>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+            </AnimatePresence>
+          </div>
+        </div>
       </main>
 
       <FooterSection />

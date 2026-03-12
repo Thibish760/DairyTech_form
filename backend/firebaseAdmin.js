@@ -1,11 +1,16 @@
 import admin from 'firebase-admin';
-import { readFile } from 'fs/promises';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
-// To import JSON in ES Modules safely:
-const serviceAccount = JSON.parse(
-  await readFile(new URL('./serviceAccountKey.json', import.meta.url))
-);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
+// Read the service account key file
+const serviceAccountPath = join(__dirname, 'serviceAccountKey.json');
+const serviceAccount = JSON.parse(readFileSync(serviceAccountPath, 'utf8'));
+
+// Initialize Firebase Admin
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)

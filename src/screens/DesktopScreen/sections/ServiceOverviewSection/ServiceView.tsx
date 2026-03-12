@@ -5,6 +5,8 @@ import { HeroSection } from "../HeroSection";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { services, type Service } from "../../../../lib/services";
+import { Navbar } from "../../../../components/Navbar";
+import { AnimatePresence, motion } from "framer-motion";
 
 const ServiceView: React.FC = () => {
   const location = useLocation();
@@ -28,8 +30,10 @@ const ServiceView: React.FC = () => {
   }
 
   return (
-    <div className="bg-white min-h-screen flex flex-col font-sans">
-      <HeroSection showOnlyNav />
+    <div className="min-h-screen bg-white py-6" style={{ fontFamily: "'DM Sans', 'Segoe UI', sans-serif" }}>
+
+      {/* Navigation */}
+      <Navbar showOnlyNav />
 
       <main className="max-w-[1200px] mx-auto w-full px-6 py-12">
         {/* TOP SERVICE SECTION */}
@@ -51,7 +55,7 @@ const ServiceView: React.FC = () => {
             </div>
 
             <div className="flex gap-4 mt-12">
-              {thumbs.map((t, i) => (
+              {/* {thumbs.map((t, i) => (
                 <button
                   key={i}
                   onClick={() => setMainImage(t)}
@@ -59,7 +63,7 @@ const ServiceView: React.FC = () => {
                 >
                   <img src={t} className="w-full h-full object-cover" />
                 </button>
-              ))}
+              ))} */}
             </div>
           </div>
 
@@ -88,7 +92,7 @@ const ServiceView: React.FC = () => {
               </p>
               <Button 
                 onClick={() => navigate('/enquiry', { state: { service } })}
-                className="bg-[#8cc63f] hover:bg-lime-600 text-white px-10 py-6 rounded-md text-xl font-bold transition-colors cursor-pointer">
+                className="bg-[#8cc63f] hover:bg-[#043b66] text-white px-10 py-6 rounded-md text-xl font-bold transition-colors cursor-pointer">
                 Let's Talk
               </Button>
             </div>
@@ -157,43 +161,58 @@ const ServiceView: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 w-full max-w-[1300px] mx-auto px-2 sm:px-4 pb-0 py-2 sm:py-3 md:py-5">
               {services.map((service) => (
-                <Card
-                  key={service.id}
-                  className="relative w-full h-[160px] sm:h-[200px] md:h-[280px] bg-white rounded-[10px] sm:rounded-[15px] overflow-hidden shadow-2xl border-0 group"
-                >
-                  <CardContent className="p-0 relative w-full h-full">
-                    <img
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      alt={service.title}
-                      src={service.image}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent flex flex-col justify-end p-2 sm:p-3 md:p-5">
-                      <h4 className="font-inter font-semibold text-white text-xs sm:text-sm md:text-lg mb-0.5 sm:mb-1">
-                        {service.title}
-                      </h4>
-                      <p className="font-inter font-normal text-gray-200 text-[10px] sm:text-xs md:text-xs mb-2 sm:mb-4 line-clamp-1 sm:line-clamp-2">
-                        {service.description}
-                      </p>
-                      <div className="flex gap-1.5 sm:gap-2">
-                        <Button 
-                          onClick={() => {
-                            window.scrollTo(0, 0);
-                            navigate('/service', { state: { service } });
-                          }}
-                          variant="ghost" 
-                          className="h-6 sm:h-8 md:h-9 px-2 sm:px-3 md:px-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full text-white text-[9px] sm:text-[10px] md:text-xs border border-white/20">
-                          View
-                        </Button>
-                        <Button 
-                          onClick={() => navigate('/enquiry', { state: { service } })}
-                        className="h-6 sm:h-8 md:h-9 flex-1 bg-white hover:bg-gray-100 rounded-full text-black text-[9px] sm:text-[10px] md:text-xs font-bold cursor-pointer">
-                          Let's Talk
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+ 
+
+                    <motion.div
+                      key={service.id}
+                      layout
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                    >
+                    <Card className="h-full bg-white/80 backdrop-blur-sm rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100 group">
+                      <CardContent className="p-0">
+                        <div className="relative h-[200px] overflow-hidden">
+                          <img
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            alt={service.title}
+                            src={service.image}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+
+                        <div className="p-4">
+                          <h4 className="font-inter font-semibold text-black mb-1 line-clamp-1">
+                            {service.title}
+                          </h4>
+                          <p className="text-gray-600 text-xs mb-3 line-clamp-2">
+                            {service.description}
+                          </p>
+                          <div className="flex gap-2">
+                            <Button
+                              onClick={() => {
+                                window.scrollTo(0, 0);
+                                navigate('/service', { state: { service } });
+                              }}
+                              variant="ghost"
+                              className="flex-1 h-8 bg-gray-100 hover:bg-gray-200 text-xs font-medium rounded-lg"
+                            >
+                              View
+                            </Button>
+                            <Button
+                              onClick={() => navigate('/enquiry', { state: { service } })}
+                              className="flex-1 h-8 bg-[#8dc63f] hover:brightness-110 text-white text-xs font-medium rounded-lg"
+                            >
+                              Enquire
+                            </Button>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+
             </div>
         </div>
       </main>
